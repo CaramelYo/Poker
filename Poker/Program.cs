@@ -39,15 +39,20 @@ namespace Poker
                 Random r = new Random();
 
                 for (int i = 0; i < 4; ++i)
-                {
                     for (int j = 0; j < 13; ++j)
                     {
                         int card_index = r.Next(0, pokers.Count);
                         players[i, j] = pokers[card_index];
                         pokers.RemoveAt(card_index);
                     }
-                }
-                
+
+                // deal all cards in order
+                //for (int i = 0; i < 4; ++i)
+                //    for (int j = 0; j < 13; ++j)
+                //    {
+                //        players[i, j] = pokers[i * 13 + j];
+                //    }
+
                 // print the cards
                 for (int i = 0; i < 4; ++i)
                 {
@@ -66,10 +71,9 @@ namespace Poker
                 {
                     List<int> ints = new List<int>();
                     for (int j = 0; j < 13; ++j)
-                    {
                         ints.Add(players[i, j].Num);
-                    }
-
+                    
+                    // it will be easy to use sort if we also want to check straight
                     ints.Sort();
                     int count = 0, memo = 0;
                     bool is_pair = false;
